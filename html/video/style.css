@@ -1,0 +1,36 @@
+*{
+    margin: 0; /*外边距*/
+    padding: 0;/*内边距*/
+}
+
+body{
+    background-color: #aaa;
+}
+
+.wrapper{
+    position: fixed;/*相对于浏览器窗口*/
+    left: 50%;
+    top:50%;
+    transform: translate(-50%,-50%);/*平移，移动相对于容器自身的50%*/
+    display: flex;/*弹性布局 该容器内所有容器都可以在一行*/
+}
+
+.speed{
+    width: 50px;
+    height: 430px;
+    background-color: #fff;
+    /*display: inline-block;*/
+    border-radius: 50px;
+    overflow: hidden;/*子容器超出我则隐藏*/
+}
+
+.speedBar{
+    width: 100%;
+    height: 16%;
+    background:linear-gradient(to bottom,#2376ae,#c16ecf);/*渐变色*/
+    display: flex;
+    justify-content: center;/*弹性容器中在主轴上居中*/
+    align-items: center;/*y轴上居中*/
+    cursor:pointer;/*鼠标放到该容器上变成小手*/
+
+}

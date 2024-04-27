@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #wrap{
+            width: 100px;
+            height: 100px;
+            background: #000;
+            /*margin-left: 500px;*/
+           /* position: relative;/*相对定位*/
+            /*position: absolute; 绝对定位，相对父容器，父容器没资格作对照就再找上一层父容器
+            left:500px;*/
+            /*transform: translate(500px,50px);/*平移*/
+            /*transform: rotate(45deg);/*绕Z轴旋转*/
+            /*transform: skewX(-10deg);/*沿X轴方向倾斜，默认上面那条边不动作为X轴定住，下边正往左，负往右*/
+            /* transform: scale(2); 缩放2倍*/
+
+            /* 3s 线性变化 无限循环 */
+            animation: scal 3s linear infinite; 
+        }
+        
+        @keyframes scal {
+            0%{
+                transform: scale(1);
+            }
+            25%{
+                transform: scale(0.5);
+            }
+            50%{
+                transform: scale(1);
+            }
+            75%{
+                transform: scale(2);
+            }
+            100%{
+                transform: scale(1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="wrap"></div>
+</body>
+</html>

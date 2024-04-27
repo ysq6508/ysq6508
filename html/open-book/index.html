@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="book p3d">
+        <div class="book-cover p3d"> <!--右半本书-->
+            <div class="page back flip"></div>
+            <div class="page front p3d">
+                <div class="shadow"></div>
+                <div class="pic"></div>
+            </div>    
+        </div>
+
+        <div class="front-cover p3d"><!--左半本书-->
+            <div class="page front flip p3d">
+                <p>
+                    祝刘总在放飞自我的道路上，一路长虹，心想事成，
+                    江西挣钱江西花 江西的女人不回家，
+                    菲律宾没有雪，马尼拉也没有爱，龙争虎斗彼岸花，小晏才是你的家，
+                    祝刘总顺风顺水顺财神。有钱有势有前程。暴富暴帅财源滚滚，一路发发发。
+                </p>
+            </div>
+
+            <div class="page back"></div>
+        </div>
+
+    </div>
+
+    <script>
+        //鼠标长按事件
+        //鼠标移动事件
+        var hold = false
+        var page = document.querySelector('.front-cover') //querySelector标签选择器
+        var clamp = function(val,min,max){
+            return Math.max(min, Math.min(val,max))
+        }
+
+        page.onmousedown = function(){
+            hold = true
+        }
+        window.onmouseup = function(){
+            hold = false
+        }
+
+        window.onmousemove = function(e) { //按住才能执行
+            if(hold){
+                console.log(e.pageX)
+                var angle = clamp((window.innerWidth / 2 - e.pageX + 300) / 300 * -90,-180,0)
+                page.style.transform = `rotateY(${angle}deg)`
+
+                //pic要立起来 angle/2
+
+
+                //shadow要倾斜 angle/8
+            }
+        }
+    </script>
+</body>
+</html>
