@@ -12,3 +12,5 @@
 
 - key,password等应该放到.env文件中
     .gitignore 用处
+
+- .env取到 main.js ?
