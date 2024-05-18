@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">fetch获取电影列表</button>
+    <ul id="list">
+        
+    </ul>
+
+    <script>
+        let btn = document.getElementById('btn')
+        let ul = document.getElementById('list')
+
+        btn.addEventListener ('click',() => {
+            fetch("https://mock.mengxuegu.com/mock/65a91543c4cd67421b34c898/movie/movieList?username='晏总'&age=18")
+            .then((res) => {
+                console.log(res); // 没有被解析完全的响应体
+                return res.json()  //格式化成响应体对象
+            })
+            .then((data) => {
+                console.log(data);
+                const movieList = data.movieList
+                for(let i = 0;i < movieList.length;i++){
+                    // movieList[i]
+                    const li = document.createElement('li');
+                    li.innerText = movieList[i].nm + '--' + movieList[i].star  // 拼接两个属性为一个字符串
+                    ul.appendChild(li);  // 添加一个子标签/子结点
+
+                }
+            })
+
+            
+        })
+
+    </script>
+    
+</body>
+</html>

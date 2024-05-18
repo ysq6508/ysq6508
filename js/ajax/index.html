@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">获取电影列表</button>
+    <ul id="list">
+        
+    </ul>
+
+    <script>
+        // 获取页面上的按钮
+        let btn = document.getElementById('btn')
+        let ul = document.getElementById('list')
+
+        // 订阅一个click事件
+        // 箭头函数里没有this，它的this是上一级的
+        btn.addEventListener('click',() => {
+
+        // 朝一个接口发送请求，获取到数据展示在页面上
+        let xhr = new XMLHttpRequest();                     //创建一个ajax实例，驱使后端朝浏览器发送一个请求
+        xhr.open('GET','https://mock.mengxuegu.com/mock/65a91543c4cd67421b34c898/movie/movieList#!method=get',true) //配置发送的参数 "true"表示是否要开启异步
+        xhr.send()
+        xhr.onreadystatechange = () => {                    // 监听请求的过程
+            if(xhr.readyState == 4 && xhr.status == 200){   // 拿到了后端返回的数据
+                // JSON.parse()把字符串转换成一个对象
+                
+                const movieList = JSON.parse(xhr.responseText).movieList
+                console.log(JSON.parse(xhr.responseText));
+                // 展示在页面上
+                for(let i = 0;i < movieList.length;i++){
+                    // movieList[i]
+                    const li = document.createElement('li');
+                    li.innerText = movieList[i].nm + '--' + movieList[i].star  // 拼接两个属性为一个字符串
+                    ul.appendChild(li);  // 添加一个子标签/子结点
+
+                }
+            }
+        }
+        })
+    </script>
+
+</body>
+</html>
