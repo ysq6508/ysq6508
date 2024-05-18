@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.login{
+    position: relative;
+    background-color: #ea3e3c;
+    height: 100vh;
+}
+
+.hd{
+    height: 20vh;
+    display: flex; /* 将容器设置为Flex布局 */
+    justify-content: center; /* 水平居中对齐子元素 */
+}
+
+.text{
+    position: absolute;
+    color: white;
+    top: 5%;
+    font-size: 20px;
+}
+
+.logo{
+    position: absolute;
+    top: 25%;
+    width: 100%;
+    text-align: center;
+}
+
+img{
+    width: 80px;
+    height: 80px;
+    display: inline-block; /*响应父级容器logo的text-align*/
+}
+
+.login-container{
+    position: absolute;
+    top: 60%;
+    height: 30vh;
+    width: 100%;
+    text-align: center;
+    font-size: 22px;
+}
+
+.pwd {
+    margin-top: 10%;
+}
+
+.usernameT{
+    display: inline-block;
+    color: white;
+    margin-right: 15px;
+}
+
+.pwdT{
+    display: inline-block;
+    color: white;
+    margin-right: 15px;
+}
+
+input[type="text"] {
+    border: 1px solid rgb(211, 201, 201); /* 设置边框为黑色 */
+    height: 30px;
+    background-color: transparent; /* 设置背景为透明 */
+    color: rgb(209, 192, 192); /* 确保文本颜色为深色，易于阅读 */
+}
+
+.submit{
+    margin-top: 10%;
+}
+
+button {
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 20px; /* 设置圆角大小，数值越大圆角越圆滑 */
+    width: 250px;
+    height: 30px;
+    background-color: white;
+}
+
+.pop{
+    position: absolute;
+    top: 30%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
