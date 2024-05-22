@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>flex.html</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .page {
+            height: 200px;
+            display: flex; /*父容器设置为弹性容器，子容器全都排一行，且默认和父容器一样高*/
+        }
+        .left,.right {
+            width: 200px;
+            background-color: #f1d370;
+        }
+        .content {
+            background-color: #c2ec92;
+            flex: 1; /*允许放大*/
+            order: 1; 
+        }
+        .left {
+            order: 0; /*弹性布局中，告诉浏览器优先渲染，即把它位置排到前面*/
+        }
+        .right {
+            order: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="content">主体内容</div>
+        <div class="left">广告位</div>
+        <div class="right">广告位</div>
+    </div>
+</body>
+</html>

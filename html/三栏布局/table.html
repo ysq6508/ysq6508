@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>table.html</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    .page {
+        height: 200px;
+        width: 100vw;
+        display: table;
+        table-layout: fixed; /*表示列宽由自身决定*/
+    }
+    .page > div {
+        display: table-cell; /*设置成表格单元*/
+    }
+    .left,.right {
+        width: 200px;
+        height: 200px;
+        background-color: #f1d370;
+    }
+    .content {
+        width: 100%;
+        height: 200px;
+        background-color: #a4deb7;
+    }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="left">广告位</div>
+        <div class="content">主体内容</div>
+        <div class="right">广告位</div>
+    </div>
+</body>
+</html>
