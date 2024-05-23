@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 200px;
+            line-height: 100px;  /*垂直居中*/
+            text-align: center;
+            color: aliceblue;
+            background-color: #cbbaba;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script>
+        var count = 1;
+        var container = document.getElementById('container');
+        // 事件
+        function getUserAction() {
+            console.log(this,'//////');
+            container.innerHTML = count++;
+        }
+        // DOM 0 级的事件
+        // addEventListener DOM 2 mousemove
+        // 引发问题：如何减少执行次数？
+        function debounce(func,wait) {
+            // 闭包
+            var timeout; // 自由变量，不会被销毁
+            return function() {
+                var context = this;
+                var args = arguments; // 参数数组
+                // 事件的执行函数吧 this -> container
+                // 控制执行的次数
+                clearTimeout(timeout)  // 每次执行都会把上一次的定时器清除掉
+                // func作为普通函数独立运行 this -> window
+                timeout = setTimeout(function() {
+                    func.apply(context,arguments)
+                },wait); 
+            }
+        }
+
+        container.onmousemove = debounce(getUserAction,1000) // 解答：让鼠标移动时不再直接执行getUserAction函数，而是debounce()
+    </script>
+</body>
+</html>
