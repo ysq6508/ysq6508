@@ -23,32 +23,33 @@
                         <td>1</td>
                         <td>代童</td>
                         <td>赣州</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>罗昭发</td>
-                        <td>赣州</td>
                     </tr> -->
                 </tbody>
             </table>
         </div>
         <div class="row col-md-6 col-md-offset-3">
-            <form>
+            <form name="aiForm" method="get" action="http://www.baidu.com">
                 <div class="form-group">
                   <label for="questionInput">向AI助理提问：</label>
-                  <input type="text" class="form-control" id="questionInput"
+                  <input type="text" name="question" class="form-control" id="questionInput"
                    placeholder="请输入您想问的users相关问题">
                 </div>
                 <button type="submit" class="btn btn-default">提交</button>
-              </form>
+            </form>
         </div>
+    <div class="row" id="message">
+    </div>
     </div>
     <script>
+        const oMessage = document.querySelector('#message')
         const oBody = document.querySelector('#user_table tbody')
+        const oForm = document.forms['aiForm'];
+        let usersData = [];
         fetch('http://localhost:3000/users')
         .then(data => data.json())
         .then(users => {
-            // console.log(users);
+            usersData = users;
+            // console.log(usersData);
             oBody.innerHTML = users.map(user => `     
                 <tr>
                     <td>${user.id}</td>
@@ -56,6 +57,19 @@
                     <td>${user.hometown}</td>
                 </tr>
             `).join('') //数组转成字符串
+        })
+
+        // 事件监听
+        oForm.addEventListener('submit', function(event) {
+            event.preventDefault();             // 阻止表单默认行为
+            const question = this["question"].value.trim();  //通过name属性去找 性能更好
+            console.log(question);
+            fetch(`http://localhost:8888/users?question=${question}&users=${JSON.stringify(usersData)}`) //对象转字符串
+            .then(data => data.json())
+            .then(res => {
+                // console.log(res);
+                document.querySelector('#message').innerHTML = res.message
+            })
         })
     </script>
 </body>

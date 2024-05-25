@@ -1,4 +1,5 @@
 # AI全栈项目
+
 ## 前后端联调
 
 - 前端
@@ -47,3 +48,14 @@
 
 - AI
     openai的能力
+- 走向AI Native  AI全栈工程师
+- 请问有哪些同学是老乡？ 这些同学来自哪个省份
+
+- form 表单
+    - 标签使用到位  无障碍访问
+        input name 提交数据的名字
+        label(for) + input(id) 为了盲人 (读屏器)
+    - html5 版本中增强了威力
+        placeholder
+    - 表单是用来提交数据的
+       dom form value + ajax 手动提交
