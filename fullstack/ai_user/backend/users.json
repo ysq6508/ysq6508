@@ -1,0 +1,24 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "艾安盛",
+            "hometown": "抚州"
+        },
+        {
+            "id": 2,
+            "name": "罗昭发",
+            "hometown": "抚州"
+        },
+        {
+            "id":3,
+            "name": "刘笑笑",
+            "hometown": "九江"
+        },
+        {
+            "id":4,
+            "name": "曹雯乐",
+            "hometown": "上饶"
+        }
+    ]
+}
