@@ -1,0 +1,119 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.mr21 {
+    margin-right: 21px;
+}
+
+ul li {
+    list-style: none;
+}
+
+.page {
+    font-family: PingFangSC-Medium;  /* 子容器全部继承到 */
+    height: 100vh;
+}
+
+.head {
+    background-color: rgb(32, 135, 255);
+    padding: 0 20px;   /* 父容器head直接左右内收20px比把menu、input子元素 */
+    padding-bottom: 15px;
+}
+
+.title {
+    padding: 30px 0 32px 0;   /* 上右下左 */
+    color: #fff;
+}
+
+.menu {
+    line-height: 24px;
+    position: absolute;
+}
+
+.menu .icon-menu {
+    font-size: 30px;
+}
+
+.title-text {
+    text-align: center;
+    font-size: 24px;
+    line-height: 1;  /* 为了尽量让字体不要擅自把容器撑开那么多*/
+}
+
+.search {
+    position: relative;
+}
+
+.search input {
+    width: 100%;
+    font-size: 13px;
+    padding: 16px 0 16px 44px;
+    /* background-color: #fff;
+    opacity: 0.6; */  /* 字体也会透明一点 */
+    background-color: rgb(255, 255, 255, 0.6);
+    border: none;
+    outline: none;  /* 鼠标点击时，边框消失 */
+    border-radius: 100px;  
+    box-sizing: border-box;  /* IE盒模型，加了padding后挤压内部面积而不扩展面积 */
+}
+
+.icon-fangdajing {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 20px !important;
+}
+
+
+.body {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    top: 148px;
+    padding: 21px 0 21px 21px;
+    padding-bottom: 65px;
+    box-sizing: border-box;
+    overflow-y: scroll;       /* 在该容器中，若内容超出则允许滚动 */
+}
+
+.singer {
+    margin-top: 3px;
+}
+
+.singer-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.singer-title span:nth-child(2) {
+    color: #2395ff;
+}
+
+.singer-list {
+    display: flex;
+    overflow-x: scroll;  /* 允许超出横向滚动 */
+}
+
+.singer-list li {
+    flex: 0 0 115px;
+    margin-right: 15px;
+}
+
+.singer-list li:last-child {  /* 伪类选择器 */
+    margin-right: 21px;
+}
+
+.avatar {
+    width: 115px;
+    height: 115px;
+    overflow: hidden;  /* 超出容器部分直接截掉 */
+}
+
+.avatar img {
+    width: 100%;
+}
