@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #model {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000000;
+            line-height: 200px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="open">打开弹出框</button>
+    <button id="close">关闭弹出框</button>
+    <!-- <div id="model">
+        我是弹出框
+    </div> -->
+
+    <script>
+        const Model = (function() {
+            let model = null
+            return function() {
+                if(!model) {
+                    model = document.createElement('div')    // 创建一个div
+                    model.innerHTML = '我是全局唯一的弹出框'    
+                    model.id = 'model'
+                    model.style.display = 'none'
+                    document.body.appendChild(model)      // appendChild添加子结构 将div添加到body中
+                }
+                return model
+            }
+        })()  // 自执行
+        document.getElementById('open').addEventListener('click', function() {
+            const model = new Model()
+            model.style.display = 'block'
+        })
+        document.getElementById('close').addEventListener('click', function() {
+            const model = new Model()
+            model.style.display = 'none'
+        })
+    </script>
+</body>
+</html>
