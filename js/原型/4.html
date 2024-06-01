@@ -1,0 +1,12 @@
+<script>
+    Person.prototype.name = 'zf';
+    function Person() {
+        this.name = 'Tom'
+    }
+
+    let p = new Person();
+    console.log(Person.prototype);  // 函数原型 显式原型
+
+    console.log(p);  // p.__proto__  对象的原型  隐式原型
+
+</script>

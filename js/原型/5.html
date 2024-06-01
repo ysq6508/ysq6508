@@ -1,0 +1,19 @@
+<script>
+    function Person() {
+        
+    }
+    let p = new Person();
+
+    console.log(Person.prototype); 
+
+    // p.__proto__ = Person.prototype;   构造函数的显式原型也是个对象，是个对象就有隐式原型， 但到Object就封顶
+    // Person.prototype.__proto__ === Object.prototype
+
+    Array.prototype.push = function () {}
+    function Array() {
+        
+    }
+
+    var arr = []
+    arr.push(1)  // push 被提前打造成了Array的原型方法
+</script>
