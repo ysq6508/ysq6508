@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "小晏",
+      "hometown": "宜春"
+    },
+    {
+      "id": "2",
+      "name": "曹妈妈",
+      "hometown": "上饶"
+    },
+    {
+      "id": "3",
+      "name": "小刘",
+      "hometown": "九江"
+    },
+    {
+      "id": "6",
+      "name": "ysq",
+      "hometown": "宜春"
+    },
+    {
+      "id": "6",
+      "name": "ysq",
+      "hometown": "宜春"
+    }
+  ],
+  "posts": [
+    {
+      "id": "7374419258397360140",
+      "title": "踏入异步之潮——探索JS Promise的奥秘"
+    },
+    {
+      "id": "7374419258397360141",
+      "title": "JavaScript中this的指向"
+    }
+  ]
+}
