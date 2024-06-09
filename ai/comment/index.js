@@ -1,20 +1,20 @@
-// 引入本地(node_mdoules)openai 依赖node-fetch 等
-// package.json 项目描述文件 dependencies
+// 引入本地(node_mdoules)openai，并使用了 node-fetch 这个第三方库来处理 HTTP 请求
+// package.json 项目描述文件 dependencies 项目依赖
 // 前端 + 后端 + AI
 // 类 require关键字
-// 系统环境变量
-// 进程的环境变量
+// 环境变量：系统环境变量  进程环境变量
+// 引入并配置dotenv来加载.env文件中的变量
 require('dotenv').config();
-// console.log(process.env);
+// console.log(process.env); 
 const OpenAI = require('openai');
 // 实例化OpenAI
 // options 配置项
 // AI全栈开发
-// prompt -> GPT-API-free -
+// prompt -> GPT-API-free -> openai
 //openai
 const client = new OpenAI({
     // 收费：使用权限
-    apikey: process.env.OPENAI_API_KEY,
+    apikey: process.env.OPENAI_API_KEY, // 进程的环境变量中有OPENAI_API_KEY
     // proxy 代理
     baseURL: 'https://api.chatanywhere.tech/v1'
 }
@@ -41,6 +41,7 @@ async function main(){
     // completions AIGC open 生成正面或负面， LLM大模型来完成
     // AI 自然语言处理 GC 生成内容
     // create 创建一个对话
+    // 返回一个JSON
     const chatCompletion = await client.chat.completions.create({
         // 聊天上下文 多轮 所以用数组
         // role 角色 user 用户向openai 问问题 content
