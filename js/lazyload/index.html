@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: grey;
+        }
+        img {
+            display: block;  
+            margin-bottom: 50px;
+            width: 400px;
+            height: 400px; 
+        }
+    </style>
+</head>
+<body>
+    <!-- 数据属性data-src 手动地出发下载 -->
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190808/v2_1565254363234_img_jpg">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190808/v2_1565254363234_img_jpg">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567641293753_img_png">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567640518658_img_png">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567642423719_img_000">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567642425030_img_000">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567642425101_img_000">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567642425061_img_000">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190904/v2_1567591358070_img_jpg">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567641974410_img_000">
+    <img src="https://misc.360buyimg.com/mtd/pc/common/img/blank.png" data-src="https://img.36krcdn.com/20190905/v2_1567641974454_img_000">
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
+    <script>
+        const imgs = document.getElementsByTagName('img');  // 返回一个集合
+        const num = imgs.length;
+        // 注册在scroll上的处理函数
+        const throttleLayLoad = _.throttle(lazyload, 200)
+        let n = 0;
+        window.addEventListener('scroll', throttleLayLoad);
+        // HTML文档被完全解析和加载完毕，而无需等待样式表、图片和子框架完成加载
+        document.addEventListener('DOMContentLoaded', () => {
+            lazyload(); // 立马加载第一屏图片
+        });
+        // 所有的依赖资源，如图片、脚本、样式表等完全加载完毕后触发
+        window.addEventListener('load', () => {
+            console.log('load');
+        });
+        
+        // 不要重复造轮子
+        // function throttle(func, limit) {  
+        //     let inThrottle;  
+        //     return function() {  
+        //         const context = this;  
+        //         const args = arguments;  
+        //         if (!inThrottle) {  
+        //           func.apply(context, args);  
+        //           inThrottle = true;  
+        //           setTimeout(() => inThrottle = false, limit);  
+        //         }  
+        //     };  
+        // }  
+        // // 使用示例  
+        // const myEfficientFn = throttle(function() {  
+        //   // 需要节流处理的代码  
+        // }, 250);  
+  
+        // window.addEventListener('scroll', myEfficientFn);
+
+        // 延迟加载图片的功能
+        function lazyload(event) {
+            // 一屏的高度
+            let screenHeight = document.documentElement.clientHeight;
+            // 滚动条滚动的距离  多浏览器适配
+            // IE 做死
+            let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            // console.log(scrollTop);
+            for (let i = n; i < num; i++) {
+                console.log(imgs[i].offsetTop); // 离父元素的偏移量
+                if (imgs[i].offsetTop < screenHeight + scrollTop) {
+                    // 主动触发下载
+                    imgs[i].src = imgs[i].getAttribute('data-src');
+                    n = i + 1; // 有多少张图片被加载
+                    if (n === num) {
+                        // console.log('全部图片加载完毕');
+                        window.removeEventListener('scroll', lazyload);
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
