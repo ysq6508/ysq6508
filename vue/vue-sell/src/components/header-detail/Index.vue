@@ -61,6 +61,7 @@ const props = defineProps({
 @import '@/assets/variable.less';
 
 .header-detail {
+  z-index: 100;
   position: fixed;
   top: 0;
   right: 0;
