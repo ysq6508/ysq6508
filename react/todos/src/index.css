@@ -1,0 +1,10 @@
+/* 通配符* 性能不太好，改成如下 */
+body, div, dl, dt, dd, ul, li, h1, h2, h3, h4, h5, h6, pre, 
+code, form, fieldset, legend, input, button, textarea, blockquote {
+  margin: 0;
+  padding: 0;
+}
+/* css选择器的匹配规则是从右至左，不要这么写#list li，少用标签选择器，直接用类名 */
+#list .list-item {
+
+}
