@@ -22,6 +22,16 @@
         * ， 标签， 从右到左匹配的
 
 - 数据流设计
+    - 父子组件通信(TodoList TodoForm两兄弟间状态的共享)
+    - 父组件App 管理 Todos addTodo, removeTodo, toggleTodo
+    - 数据流向由父->子 子通过调用父props传过来的方法，通知数据修改
+    - props, state 组件的数据
+
+- 应用开发 = Component UI + 数据管理
+    - 数据驱动的界面
+- 生命周期
+    - componentDidUpdate ——处localStorage
+    setItem('todos')即可
 
 - 响应式开发
 

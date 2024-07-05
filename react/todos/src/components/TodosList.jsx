@@ -4,10 +4,20 @@ import './TodosList.css';
 
 class TodosList extends Component {
     render() {
+      const { todos, deleteTodo, toggleTodo, editTodo } = this.props;
       return (
       <div>
         <h1>Todo List</h1>
-        <TodoItem />
+        {
+          todos.map((todo, index) => {
+            return <TodoItem 
+            key={index} index={index} todo={todo}
+            deleteTodo={deleteTodo}
+            toggleTodo={toggleTodo}
+            editTodo={editTodo}
+            />;
+          })
+        }
       </div>
       )
     }
