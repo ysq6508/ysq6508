@@ -9,7 +9,9 @@ import {
     Form,
     CellGroup,
     Field,
-    Button
+    Button,
+    NavBar,
+    Checkbox
 } from 'vant'
 import 'vant/lib/index.css'
 
@@ -23,6 +25,8 @@ app
     .use(CellGroup)
     .use(Field)
     .use(Button)
+    .use(NavBar)
+    .use(Checkbox)
 app
     .use(router)  // 将路由中间件Vue Router注册到 Vue 应用中
     .use(pinia)
