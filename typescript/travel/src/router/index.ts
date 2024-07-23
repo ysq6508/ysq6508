@@ -25,6 +25,11 @@ const routes: RouteRecordRaw[] = [
         component: TheRoot,  // 路由懒加载
         redirect: '/home',
         children: rootRoutes
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/TheLogin.vue') 
     }
 ]
 
