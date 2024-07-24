@@ -11,7 +11,9 @@ import {
     Field,
     Button,
     NavBar,
-    Checkbox
+    Checkbox,
+    Search,
+    Icon
 } from 'vant'
 import 'vant/lib/index.css'
 
@@ -27,6 +29,8 @@ app
     .use(Button)
     .use(NavBar)
     .use(Checkbox)
+    .use(Search)
+    .use(Icon)
 app
     .use(router)  // 将路由中间件Vue Router注册到 Vue 应用中
     .use(pinia)
