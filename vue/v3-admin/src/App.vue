@@ -5,7 +5,7 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <template>
   <div>
-    <ElButton>按钮</ElButton>
+    <!-- <ElButton>按钮</ElButton> -->
     <router-view></router-view>
   </div>
 </template>
