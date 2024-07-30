@@ -30,6 +30,7 @@ const rootRoutes: RouteRecordRaw[] = [
     }
 ]
 
+// 一级路由
 const routes: RouteRecordRaw[] = [
     {
         path: '/', 

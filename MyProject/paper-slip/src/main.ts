@@ -8,7 +8,10 @@ import {
     Tabbar,
     TabbarItem,
     Search,
-    Icon
+    Icon,
+    Button,
+    Swipe, 
+    SwipeItem
 } from 'vant'
 
 const app = createApp(App)
@@ -18,6 +21,9 @@ app
     .use(TabbarItem)
     .use(Search)
     .use(Icon)
+    .use(Button)
+    .use(Swipe)
+    .use(SwipeItem)
 app
     .use(router)
     .use(createPinia())
