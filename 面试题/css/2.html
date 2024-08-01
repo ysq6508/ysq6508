@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            color: red;
+        }
+        #box{
+            color: blue;
+        }
+        div{
+            color: green;
+        }
+
+        body div{             /* 后代选择器 */
+            color: yellow;
+        }
+
+        body > div{             /* 子集选择器，与后代选择器无权重之分，主要取决于用的是标签还是类名还是什么 */
+            color: yellow;
+        }
+        .wrap + .item {         /* 相邻兄弟选择器 */
+            height: 20px;
+        }
+        .wrap, .item {
+            height: 20px;
+        }
+
+        .box[abc] {             /* 属性选择器 */
+            height: 30px;
+        }
+
+        .box:hover{             /* 伪类选择器 */
+            background-color: aqua;
+        }
+
+        .box::after{            /* 伪元素选择器 */
+            content: "hello";
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box" abc="1"></div>
+</body>
+</html>
