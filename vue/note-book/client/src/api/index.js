@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { showToast } from 'vant';
 
-axios.defaults.baseURL = 'http://localhost:3000'
+axios.defaults.baseURL = 'http://localhost:3000'  //  Axios 的全局基础 URL
+// 求类型为 POST 时，Axios 默认的 Content-Type 请求头,发送的数据将以 JSON 格式编码
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 
 // 请求拦截
