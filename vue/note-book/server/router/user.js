@@ -1,6 +1,7 @@
 // 定义一些跟用户相关的接口
 const router = require('koa-router')();
 const { userLogin, userFind, userRegister } = require('../controllers/index.js');
+const jwt = require('../utils/jwt.js')
 
 router.prefix('/user')  // 路由前缀
 
@@ -13,15 +14,24 @@ router.post('/login', async (ctx) => {
         // console.log(result);
         if(result.length) {
             let data = {
-                id: result[0].nickname,
+                id: result[0].id,
                 nickname: result[0].nickname,
                 username: result[0].username
             }
 
+            // 生成token
+            let token = jwt.sign({
+                id: result[0].id,
+                username: result[0].username,
+                admin: true
+            })
+            console.log(token);
+
             ctx.body = {
                 code: '8000',
                 data: data,
-                msg: '登录成功'
+                msg: '登录成功',
+                token: token
             }
         }else{
             ctx.body = {
@@ -85,6 +95,14 @@ router.post('/register', async (ctx) => {
         }
     }
     
+})
+
+// 测试token
+router.post('/home', jwt.verify(), (ctx) => {
+    ctx.body = {
+        code: '8000',
+        data: '首页数据'
+    }
 })
 
 module.exports = router

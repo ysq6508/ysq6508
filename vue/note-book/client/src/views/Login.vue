@@ -45,9 +45,9 @@ const onSubmit = async (values) => {
         password: values.password
     })
     localStorage.setItem('userInfo', JSON.stringify(res.data))
+    localStorage.setItem('jwtToken', res.token)
     router.push('/noteClass')
     console.log(res);
-    
 }
 
 </script>
