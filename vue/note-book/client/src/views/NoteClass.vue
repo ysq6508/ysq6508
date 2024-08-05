@@ -6,7 +6,7 @@
                     <van-icon name="wap-nav" />
                 </div>
                 <div>
-                    <van-icon name="edit" />
+                    <van-icon name="edit" @click="goNotePublish"/>
                     <van-icon name="like-o" />
                     <van-icon name="search" />
                 </div>
@@ -46,7 +46,11 @@ const noteClassList = [
 const isShowMenu = ref(false)
 
 const goNoteList = (title) => {
-    router.push({path: 'noteList', query: {title: title}})
+    router.push({path: '/noteList', query: {title: title}})
+}
+
+const goNotePublish = () => {
+    router.push({path: '/notePublish'})
 }
 </script>
 

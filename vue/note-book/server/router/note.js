@@ -59,4 +59,40 @@ router.get('/findNoteListByID', jwt.verify(), async (ctx) => {
     }    
 })
 
+router.post('/notePublish', jwt.verify, async (ctx) => {    
+    const {title, note_type, head_img, note_content, nickname} = ctx.request.body
+    const userId = ctx.userId
+
+    if(!title || !note_type) {
+        ctx.body = {
+            code: '8001',
+            msg: '标题或分类不能为空'
+        }
+        return;
+    }
+    try{
+        const publishRes = await publishNote(title, note_type, head_img, note_content, nickname, userId)
+        if(publishRes.affectedRows){
+            ctx.body = {
+                code: '8000',
+                data: 'success',
+                msg: '发布成功'
+            }
+        }else {
+            ctx.body = {
+                code: '8004',
+                data: 'error',
+                msg: '发布失败'
+            }
+        }
+    }catch(error) {
+        ctx.body = {
+            code: '8005',
+            data: error,
+            msg: '服务器异常'
+        }
+    }
+    
+})
+
 module.exports = router

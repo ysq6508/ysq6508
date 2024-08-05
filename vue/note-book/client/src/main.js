@@ -8,7 +8,7 @@ import App from './App.vue'
 import router from './router'
 
 // 1. 引入你需要的组件
-import { Button, Form, Field, CellGroup, Icon } from 'vant';
+import { Button, Form, Field, CellGroup, Icon, Uploader, ActionSheet  } from 'vant';
 // 2. 引入组件样式
 import 'vant/lib/index.css';
 
@@ -19,6 +19,8 @@ app.use(Form);
 app.use(Field);
 app.use(CellGroup);
 app.use(Icon);
+app.use(Uploader);
+app.use(ActionSheet);
 
 app.use(createPinia())
 app.use(router)
