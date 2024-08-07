@@ -5,9 +5,8 @@ import {
 env.allowLocalModels = false;
 
 /**
- * This class uses the Singleton pattern to ensure that only one instance of the
- * pipeline is loaded. This is because loading the pipeline is an expensive
- * operation and we don't want to do it every time we want to translate a sentence.
+ *本类采用了单例模式来确保仅加载一个管道实例。这是因为加载管道是一个代价高昂的操作，
+ * 我们不希望每次需要翻译句子时都执行这一操作。
  */
 class MyTranslationPipeline {
     static task = 'translation';
@@ -23,22 +22,21 @@ class MyTranslationPipeline {
     }
 }
 
-// Listen for messages from the main thread
+// 监听主线程消息
 self.addEventListener('message', async (event) => {
-    // Retrieve the translation pipeline. When called for the first time,
-    // this will load the pipeline and save it for future use.
+    // 获取翻译管道，首次调用时，这将加载管道并将其保存以供将来使用
     let translator = await MyTranslationPipeline.getInstance(x => {
-        // We also add a progress callback to the pipeline so that we can
-        // track model loading.
+        // 我们还向管道中添加了一个进度回调，以便我们可以
+        // 跟踪模型加载的过程。
         self.postMessage(x);
     });
 
-    // Actually perform the translation
+    // 执行翻译
     let output = await translator(event.data.text, {
         tgt_lang: event.data.tgt_lang,
         src_lang: event.data.src_lang,
 
-        // Allows for partial output
+        // 允许部分输出
         callback_function: x => {
             self.postMessage({
                 status: 'update',
@@ -47,7 +45,7 @@ self.addEventListener('message', async (event) => {
         }
     });
 
-    // Send the output back to the main thread
+    // 将输出发送回主线程
     self.postMessage({
         status: 'complete',
         output: output,
