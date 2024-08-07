@@ -6,40 +6,38 @@ import './App.css'
 
 function App() {
 
-  // Model loading
+  // 管理状态变量
   const [ready, setReady] = useState(null);
   const [disabled, setDisabled] = useState(false);
   const [progressItems, setProgressItems] = useState([]);
 
-  // Inputs and outputs
   const [input, setInput] = useState('I love walking my dog.');
   const [sourceLanguage, setSourceLanguage] = useState('eng_Latn');
   const [targetLanguage, setTargetLanguage] = useState('fra_Latn');
   const [output, setOutput] = useState('');
 
-  // Create a reference to the worker object.
+  // 创建一个可变的引用对象
   const worker = useRef(null);
 
-  // We use the `useEffect` hook to setup the worker as soon as the `App` component is mounted.
+  // 确保只在首次渲染时被初始化为一个新的 Worker 实例。
   useEffect(() => {
     if (!worker.current) {
-      // Create the worker if it does not yet exist.
       worker.current = new Worker(new URL('./worker.js', import.meta.url), {
         type: 'module'
       });
     }
 
-    // Create a callback function for messages from the worker thread.
+    // 创建一个回调函数，用于处理来自工作线程的消息
     const onMessageReceived = (e) => {
       switch (e.data.status) {
         case 'initiate':
-          // Model file start load: add a new progress item to the list.
+          // 模型文件开始加载：向进度列表中添加一个新的进度项
           setReady(false);
           setProgressItems(prev => [...prev, e.data]);
           break;
 
         case 'progress':
-          // Model file progress: update one of the progress items.
+          // 模型文件加载进度：更新进度列表中的一个进度项
           setProgressItems(
             prev => prev.map(item => {
               if (item.file === e.data.file) {
@@ -51,33 +49,33 @@ function App() {
           break;
 
         case 'done':
-          // Model file loaded: remove the progress item from the list.
+          // 模型文件加载完成：从进度列表中移除对应的进度项
           setProgressItems(
             prev => prev.filter(item => item.file !== e.data.file)
           );
           break;
 
         case 'ready':
-          // Pipeline ready: the worker is ready to accept messages.
+          // 管道准备就绪：工作线程已准备好接收消息
           setReady(true);
           break;
 
         case 'update':
-          // Generation update: update the output text.
+          // 生成更新：更新输出文本
           setOutput(e.data.output);
           break;
 
         case 'complete':
-          // Generation complete: re-enable the "Translate" button
+          // 生成完成：重新启用“翻译”按钮
           setDisabled(false);
           break;
       }
     };
 
-    // Attach the callback function as an event listener.
+    // 将回调函数附加为事件监听器
     worker.current.addEventListener('message', onMessageReceived);
 
-    // Define a cleanup function for when the component is unmounted.
+    // 定义一个清理函数，用于在组件卸载时执行
     return () => worker.current.removeEventListener('message', onMessageReceived);
   });
 
